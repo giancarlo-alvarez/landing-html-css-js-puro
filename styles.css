@@ -253,7 +253,7 @@ body::before {
     }
 }
 
-/* Hero Section Oceánico */
+/* Hero Section Oceánico 3D */
 .hero {
     min-height: 100vh;
     display: flex;
@@ -262,6 +262,215 @@ body::before {
     color: white;
     position: relative;
     overflow: hidden;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+}
+
+/* Escena 3D principal */
+.scene-3d {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    perspective: 2000px;
+}
+
+/* Efectos oceánicos 3D */
+.ocean-background-3d {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    z-index: 1;
+}
+
+.wave-3d {
+    position: absolute;
+    width: 200%;
+    height: 120px;
+    background: linear-gradient(90deg, 
+        rgba(14, 165, 233, 0.2) 0%, 
+        rgba(6, 182, 212, 0.4) 25%, 
+        rgba(14, 165, 233, 0.2) 50%, 
+        rgba(6, 182, 212, 0.4) 75%, 
+        rgba(14, 165, 233, 0.2) 100%);
+    border-radius: 50%;
+    animation: wave3DAnimation 8s ease-in-out infinite;
+    transform-style: preserve-3d;
+}
+
+.wave-3d-1 {
+    top: 20%;
+    left: -50%;
+    animation-delay: 0s;
+    height: 100px;
+    transform: rotateX(15deg) rotateY(10deg);
+}
+
+.wave-3d-2 {
+    top: 40%;
+    left: -50%;
+    animation-delay: 2s;
+    height: 80px;
+    opacity: 0.8;
+    transform: rotateX(-10deg) rotateY(-5deg);
+}
+
+.wave-3d-3 {
+    top: 60%;
+    left: -50%;
+    animation-delay: 4s;
+    height: 140px;
+    opacity: 0.6;
+    transform: rotateX(20deg) rotateY(15deg);
+}
+
+.wave-3d-4 {
+    top: 80%;
+    left: -50%;
+    animation-delay: 6s;
+    height: 160px;
+    opacity: 0.4;
+    transform: rotateX(-15deg) rotateY(-10deg);
+}
+
+.wave-3d-5 {
+    top: 10%;
+    left: -50%;
+    animation-delay: 1s;
+    height: 60px;
+    opacity: 0.9;
+    transform: rotateX(5deg) rotateY(20deg);
+}
+
+/* Partículas 3D volumétricas */
+.particles-3d-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    transform-style: preserve-3d;
+}
+
+.particle-3d {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: radial-gradient(circle, 
+        rgba(255, 255, 255, 0.9) 0%, 
+        rgba(14, 165, 233, 0.6) 50%, 
+        rgba(6, 182, 212, 0.3) 100%);
+    border-radius: 50%;
+    animation: particle3DFloat 12s linear infinite;
+    transform-style: preserve-3d;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+.particle-3d-1 {
+    left: 10%;
+    top: 20%;
+    animation-delay: 0s;
+    transform: translateZ(100px) rotateX(45deg);
+}
+
+.particle-3d-2 {
+    left: 30%;
+    top: 40%;
+    animation-delay: 2s;
+    transform: translateZ(200px) rotateX(-30deg);
+}
+
+.particle-3d-3 {
+    left: 60%;
+    top: 30%;
+    animation-delay: 4s;
+    transform: translateZ(150px) rotateX(60deg);
+}
+
+.particle-3d-4 {
+    left: 80%;
+    top: 60%;
+    animation-delay: 6s;
+    transform: translateZ(300px) rotateX(-45deg);
+}
+
+.particle-3d-5 {
+    left: 20%;
+    top: 70%;
+    animation-delay: 8s;
+    transform: translateZ(250px) rotateX(30deg);
+}
+
+.particle-3d-6 {
+    left: 50%;
+    top: 80%;
+    animation-delay: 10s;
+    transform: translateZ(180px) rotateX(-60deg);
+}
+
+.particle-3d-7 {
+    left: 70%;
+    top: 10%;
+    animation-delay: 1s;
+    transform: translateZ(120px) rotateX(15deg);
+}
+
+.particle-3d-8 {
+    left: 40%;
+    top: 50%;
+    animation-delay: 3s;
+    transform: translateZ(220px) rotateX(-15deg);
+}
+
+/* Efectos de iluminación 3D */
+.lighting-3d {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.light-source {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, 
+        rgba(255, 255, 255, 0.1) 0%, 
+        rgba(14, 165, 233, 0.05) 50%, 
+        transparent 100%);
+    border-radius: 50%;
+    animation: lightSource3D 6s ease-in-out infinite;
+    transform-style: preserve-3d;
+}
+
+.light-source-1 {
+    top: 20%;
+    left: 20%;
+    animation-delay: 0s;
+    transform: translateZ(50px) rotateX(30deg);
+}
+
+.light-source-2 {
+    top: 60%;
+    right: 20%;
+    animation-delay: 2s;
+    transform: translateZ(100px) rotateX(-20deg);
+}
+
+.light-source-3 {
+    top: 40%;
+    left: 60%;
+    animation-delay: 4s;
+    transform: translateZ(75px) rotateX(45deg);
 }
 
 /* Efectos oceánicos de fondo */
@@ -581,6 +790,129 @@ body::before {
     align-items: center;
     animation: slideInRight 1s ease-out;
     position: relative;
+    transform-style: preserve-3d;
+    perspective: 1500px;
+}
+
+/* Gráfico 3D del hero */
+.hero-graphic-3d {
+    width: 500px;
+    height: 500px;
+    position: relative;
+    transform-style: preserve-3d;
+    animation: heroGraphic3DRotate 20s linear infinite;
+}
+
+/* Cubos 3D flotantes */
+.cube-3d {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    transform-style: preserve-3d;
+    animation: cube3DFloat 8s ease-in-out infinite;
+}
+
+.cube-3d-1 {
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+    transform: translateZ(100px) rotateX(15deg) rotateY(45deg);
+}
+
+.cube-3d-2 {
+    top: 10%;
+    right: 20%;
+    animation-delay: 2s;
+    transform: translateZ(150px) rotateX(-20deg) rotateY(-30deg);
+}
+
+.cube-3d-3 {
+    bottom: 20%;
+    left: 20%;
+    animation-delay: 4s;
+    transform: translateZ(200px) rotateX(30deg) rotateY(60deg);
+}
+
+.cube-3d-4 {
+    bottom: 10%;
+    right: 10%;
+    animation-delay: 6s;
+    transform: translateZ(120px) rotateX(-45deg) rotateY(-60deg);
+}
+
+/* Caras del cubo */
+.cube-face {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, 
+        rgba(14, 165, 233, 0.8) 0%, 
+        rgba(6, 182, 212, 0.6) 100%);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: white;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 20px rgba(14, 165, 233, 0.3);
+}
+
+.cube-face.front {
+    transform: translateZ(40px);
+}
+
+.cube-face.back {
+    transform: translateZ(-40px) rotateY(180deg);
+}
+
+.cube-face.right {
+    transform: rotateY(90deg) translateZ(40px);
+}
+
+.cube-face.left {
+    transform: rotateY(-90deg) translateZ(40px);
+}
+
+.cube-face.top {
+    transform: rotateX(90deg) translateZ(40px);
+}
+
+.cube-face.bottom {
+    transform: rotateX(-90deg) translateZ(40px);
+}
+
+/* Esfera 3D central */
+.sphere-3d {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 120px;
+    height: 120px;
+    transform: translate(-50%, -50%) translateZ(300px);
+    transform-style: preserve-3d;
+    animation: sphere3DRotate 15s linear infinite;
+}
+
+.sphere-surface {
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle at 30% 30%, 
+        rgba(255, 255, 255, 0.9) 0%, 
+        rgba(14, 165, 233, 0.8) 30%, 
+        rgba(6, 182, 212, 0.6) 60%, 
+        rgba(0, 0, 0, 0.3) 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: white;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+    box-shadow: 
+        0 0 30px rgba(14, 165, 233, 0.5),
+        inset 0 0 20px rgba(255, 255, 255, 0.2);
+    animation: sphere3DPulse 4s ease-in-out infinite;
 }
 
 .hero-graphic {
@@ -2346,6 +2678,275 @@ body::before {
     }
     50% {
         filter: drop-shadow(0 0 25px rgba(0, 255, 255, 0.9));
+    }
+}
+
+/* Animaciones 3D Espectaculares */
+@keyframes wave3DAnimation {
+    0% {
+        transform: translateX(-50%) translateY(0) rotateX(15deg) rotateY(10deg);
+    }
+    25% {
+        transform: translateX(-30%) translateY(-20px) rotateX(20deg) rotateY(15deg);
+    }
+    50% {
+        transform: translateX(-10%) translateY(0) rotateX(15deg) rotateY(10deg);
+    }
+    75% {
+        transform: translateX(10%) translateY(-10px) rotateX(10deg) rotateY(5deg);
+    }
+    100% {
+        transform: translateX(30%) translateY(0) rotateX(15deg) rotateY(10deg);
+    }
+}
+
+@keyframes particle3DFloat {
+    0% {
+        transform: translateY(100vh) translateX(0) translateZ(100px) rotateX(45deg) scale(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+        transform: translateY(90vh) translateX(10px) translateZ(100px) rotateX(45deg) scale(1);
+    }
+    90% {
+        opacity: 1;
+        transform: translateY(10vh) translateX(50px) translateZ(100px) rotateX(45deg) scale(1);
+    }
+    100% {
+        transform: translateY(-100px) translateX(100px) translateZ(100px) rotateX(45deg) scale(0);
+        opacity: 0;
+    }
+}
+
+@keyframes lightSource3D {
+    0%, 100% {
+        transform: translateZ(50px) rotateX(30deg) scale(1);
+        opacity: 0.3;
+    }
+    25% {
+        transform: translateZ(100px) rotateX(45deg) scale(1.2);
+        opacity: 0.6;
+    }
+    50% {
+        transform: translateZ(150px) rotateX(60deg) scale(1.5);
+        opacity: 0.8;
+    }
+    75% {
+        transform: translateZ(100px) rotateX(45deg) scale(1.2);
+        opacity: 0.6;
+    }
+}
+
+@keyframes heroGraphic3DRotate {
+    0% {
+        transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+    }
+    25% {
+        transform: rotateX(15deg) rotateY(90deg) rotateZ(5deg);
+    }
+    50% {
+        transform: rotateX(0deg) rotateY(180deg) rotateZ(0deg);
+    }
+    75% {
+        transform: rotateX(-15deg) rotateY(270deg) rotateZ(-5deg);
+    }
+    100% {
+        transform: rotateX(0deg) rotateY(360deg) rotateZ(0deg);
+    }
+}
+
+@keyframes cube3DFloat {
+    0%, 100% {
+        transform: translateZ(100px) rotateX(15deg) rotateY(45deg) translateY(0);
+    }
+    25% {
+        transform: translateZ(150px) rotateX(30deg) rotateY(60deg) translateY(-20px);
+    }
+    50% {
+        transform: translateZ(200px) rotateX(45deg) rotateY(90deg) translateY(0);
+    }
+    75% {
+        transform: translateZ(150px) rotateX(30deg) rotateY(120deg) translateY(-10px);
+    }
+}
+
+@keyframes sphere3DRotate {
+    0% {
+        transform: translate(-50%, -50%) translateZ(300px) rotateX(0deg) rotateY(0deg);
+    }
+    25% {
+        transform: translate(-50%, -50%) translateZ(350px) rotateX(90deg) rotateY(90deg);
+    }
+    50% {
+        transform: translate(-50%, -50%) translateZ(400px) rotateX(180deg) rotateY(180deg);
+    }
+    75% {
+        transform: translate(-50%, -50%) translateZ(350px) rotateX(270deg) rotateY(270deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) translateZ(300px) rotateX(360deg) rotateY(360deg);
+    }
+}
+
+@keyframes sphere3DPulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 
+            0 0 30px rgba(14, 165, 233, 0.5),
+            inset 0 0 20px rgba(255, 255, 255, 0.2);
+    }
+    50% {
+        transform: scale(1.1);
+        box-shadow: 
+            0 0 50px rgba(14, 165, 233, 0.8),
+            inset 0 0 30px rgba(255, 255, 255, 0.4);
+    }
+}
+
+/* Efectos de profundidad 3D */
+@keyframes depth3DShift {
+    0%, 100% {
+        transform: translateZ(0) rotateX(0deg);
+    }
+    25% {
+        transform: translateZ(50px) rotateX(10deg);
+    }
+    50% {
+        transform: translateZ(100px) rotateX(20deg);
+    }
+    75% {
+        transform: translateZ(50px) rotateX(10deg);
+    }
+}
+
+/* Efectos de cámara 3D */
+@keyframes camera3DMove {
+    0%, 100% {
+        transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0);
+    }
+    25% {
+        transform: perspective(1000px) rotateX(10deg) rotateY(45deg) translateZ(50px);
+    }
+    50% {
+        transform: perspective(1000px) rotateX(20deg) rotateY(90deg) translateZ(100px);
+    }
+    75% {
+        transform: perspective(1000px) rotateX(10deg) rotateY(135deg) translateZ(50px);
+    }
+}
+
+/* Efectos de iluminación 3D dinámica */
+@keyframes lighting3DDynamic {
+    0%, 100% {
+        filter: brightness(1) contrast(1) hue-rotate(0deg);
+        box-shadow: 0 0 20px rgba(14, 165, 233, 0.3);
+    }
+    25% {
+        filter: brightness(1.2) contrast(1.1) hue-rotate(30deg);
+        box-shadow: 0 0 30px rgba(6, 182, 212, 0.5);
+    }
+    50% {
+        filter: brightness(1.4) contrast(1.2) hue-rotate(60deg);
+        box-shadow: 0 0 40px rgba(14, 165, 233, 0.7);
+    }
+    75% {
+        filter: brightness(1.2) contrast(1.1) hue-rotate(30deg);
+        box-shadow: 0 0 30px rgba(6, 182, 212, 0.5);
+    }
+}
+
+/* Efectos de partículas 3D volumétricas */
+@keyframes volumetric3DParticles {
+    0% {
+        transform: translateZ(0) scale(0) rotateX(0deg) rotateY(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+        transform: translateZ(50px) scale(1) rotateX(45deg) rotateY(45deg);
+    }
+    50% {
+        transform: translateZ(200px) scale(1.5) rotateX(90deg) rotateY(180deg);
+    }
+    90% {
+        opacity: 1;
+        transform: translateZ(400px) scale(1) rotateX(135deg) rotateY(270deg);
+    }
+    100% {
+        transform: translateZ(500px) scale(0) rotateX(180deg) rotateY(360deg);
+        opacity: 0;
+    }
+}
+
+/* Efectos de transición 3D entre secciones */
+@keyframes section3DTransition {
+    0% {
+        transform: perspective(1000px) rotateX(0deg) translateY(0) scale(1);
+        opacity: 1;
+    }
+    25% {
+        transform: perspective(1000px) rotateX(45deg) translateY(-50px) scale(0.9);
+        opacity: 0.8;
+    }
+    50% {
+        transform: perspective(1000px) rotateX(90deg) translateY(-100px) scale(0.8);
+        opacity: 0.6;
+    }
+    75% {
+        transform: perspective(1000px) rotateX(135deg) translateY(-50px) scale(0.9);
+        opacity: 0.8;
+    }
+    100% {
+        transform: perspective(1000px) rotateX(180deg) translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+/* Efectos de rotación 3D en elementos oceánicos */
+@keyframes oceanElement3DRotate {
+    0% {
+        transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) translateZ(0);
+    }
+    25% {
+        transform: rotateX(15deg) rotateY(90deg) rotateZ(5deg) translateZ(20px);
+    }
+    50% {
+        transform: rotateX(30deg) rotateY(180deg) rotateZ(0deg) translateZ(40px);
+    }
+    75% {
+        transform: rotateX(15deg) rotateY(270deg) rotateZ(-5deg) translateZ(20px);
+    }
+    100% {
+        transform: rotateX(0deg) rotateY(360deg) rotateZ(0deg) translateZ(0);
+    }
+}
+
+/* Efectos de iluminación 3D realista */
+@keyframes realistic3DLighting {
+    0%, 100% {
+        box-shadow: 
+            0 0 20px rgba(14, 165, 233, 0.3),
+            inset 0 0 10px rgba(255, 255, 255, 0.1);
+        filter: brightness(1) contrast(1);
+    }
+    25% {
+        box-shadow: 
+            0 0 30px rgba(6, 182, 212, 0.5),
+            inset 0 0 15px rgba(255, 255, 255, 0.2);
+        filter: brightness(1.1) contrast(1.1);
+    }
+    50% {
+        box-shadow: 
+            0 0 40px rgba(14, 165, 233, 0.7),
+            inset 0 0 20px rgba(255, 255, 255, 0.3);
+        filter: brightness(1.2) contrast(1.2);
+    }
+    75% {
+        box-shadow: 
+            0 0 30px rgba(6, 182, 212, 0.5),
+            inset 0 0 15px rgba(255, 255, 255, 0.2);
+        filter: brightness(1.1) contrast(1.1);
     }
 }
 

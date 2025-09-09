@@ -1127,7 +1127,205 @@ function createTentacleEffect(jellyfish) {
     }
 }
 
-// Inicialización de todas las funcionalidades oceánicas espectaculares
+// Efectos 3D espectaculares
+function init3DEffects() {
+    // Efectos de cámara 3D
+    init3DCamera();
+    
+    // Efectos de profundidad 3D
+    init3DDepth();
+    
+    // Efectos de iluminación 3D
+    init3DLighting();
+    
+    // Efectos de partículas 3D
+    init3DParticles();
+    
+    // Efectos de transición 3D
+    init3DTransitions();
+    
+    // Efectos de rotación 3D
+    init3DRotation();
+}
+
+function init3DCamera() {
+    const hero = document.querySelector('.hero');
+    if (hero) {
+        let mouseX = 0;
+        let mouseY = 0;
+        
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth) - 0.5;
+            mouseY = (e.clientY / window.innerHeight) - 0.5;
+            
+            const rotateX = mouseY * 20;
+            const rotateY = mouseX * 20;
+            
+            hero.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+    }
+}
+
+function init3DDepth() {
+    const elements = document.querySelectorAll('.cube-3d, .sphere-3d, .particle-3d');
+    
+    elements.forEach((element, index) => {
+        element.addEventListener('mouseenter', function() {
+            this.style.animation = 'depth3DShift 2s ease-in-out infinite';
+            this.style.transform += ' translateZ(50px)';
+        });
+        
+        element.addEventListener('mouseleave', function() {
+            this.style.animation = this.style.animation.replace('depth3DShift 2s ease-in-out infinite', '');
+            this.style.transform = this.style.transform.replace(' translateZ(50px)', '');
+        });
+    });
+}
+
+function init3DLighting() {
+    const lightSources = document.querySelectorAll('.light-source');
+    
+    lightSources.forEach((light, index) => {
+        setInterval(() => {
+            light.style.animation = 'lighting3DDynamic 3s ease-in-out infinite';
+        }, index * 1000);
+    });
+}
+
+function init3DParticles() {
+    const particles = document.querySelectorAll('.particle-3d');
+    
+    particles.forEach((particle, index) => {
+        particle.addEventListener('mouseenter', function() {
+            this.style.animation = 'volumetric3DParticles 4s ease-in-out infinite';
+        });
+        
+        particle.addEventListener('mouseleave', function() {
+            this.style.animation = 'particle3DFloat 12s linear infinite';
+        });
+    });
+}
+
+function init3DTransitions() {
+    const sections = document.querySelectorAll('section');
+    
+    sections.forEach((section, index) => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'section3DTransition 2s ease-in-out';
+                }
+            });
+        }, { threshold: 0.3 });
+        
+        observer.observe(section);
+    });
+}
+
+function init3DRotation() {
+    const cubes = document.querySelectorAll('.cube-3d');
+    
+    cubes.forEach((cube, index) => {
+        cube.addEventListener('click', function() {
+            this.style.animation = 'oceanElement3DRotate 3s ease-in-out';
+            
+            // Crear efecto de partículas 3D
+            create3DParticleExplosion(this);
+        });
+    });
+}
+
+function create3DParticleExplosion(element) {
+    const rect = element.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    
+    for (let i = 0; i < 10; i++) {
+        const particle = document.createElement('div');
+        particle.style.cssText = `
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            background: radial-gradient(circle, 
+                rgba(255, 255, 255, 0.9) 0%, 
+                rgba(14, 165, 233, 0.6) 100%);
+            border-radius: 50%;
+            left: ${centerX}px;
+            top: ${centerY}px;
+            pointer-events: none;
+            z-index: 1000;
+            animation: volumetric3DParticles 2s ease-out forwards;
+            transform: translateZ(0);
+        `;
+        
+        // Aplicar dirección aleatoria
+        const angle = (i / 10) * 360;
+        const distance = 100 + Math.random() * 100;
+        const endX = centerX + Math.cos(angle * Math.PI / 180) * distance;
+        const endY = centerY + Math.sin(angle * Math.PI / 180) * distance;
+        
+        particle.style.setProperty('--end-x', `${endX}px`);
+        particle.style.setProperty('--end-y', `${endY}px`);
+        
+        document.body.appendChild(particle);
+        
+        setTimeout(() => {
+            particle.remove();
+        }, 2000);
+    }
+}
+
+// Efectos de parallax 3D multi-capa
+function init3DParallax() {
+    const layers = document.querySelectorAll('.wave-3d, .particle-3d, .light-source');
+    
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        
+        layers.forEach((layer, index) => {
+            const speed = 0.5 + (index * 0.1);
+            const yPos = -(scrolled * speed);
+            const zPos = scrolled * 0.1;
+            
+            layer.style.transform += ` translateY(${yPos}px) translateZ(${zPos}px)`;
+        });
+    });
+}
+
+// Efectos de iluminación 3D realista
+function init3DRealisticLighting() {
+    const elements = document.querySelectorAll('.cube-face, .sphere-surface');
+    
+    elements.forEach(element => {
+        element.addEventListener('mouseenter', function() {
+            this.style.animation = 'realistic3DLighting 2s ease-in-out infinite';
+        });
+        
+        element.addEventListener('mouseleave', function() {
+            this.style.animation = this.style.animation.replace('realistic3DLighting 2s ease-in-out infinite', '');
+        });
+    });
+}
+
+// Efectos de cámara 3D dinámica
+function init3DDynamicCamera() {
+    const hero = document.querySelector('.hero');
+    if (hero) {
+        let isMouseOver = false;
+        
+        hero.addEventListener('mouseenter', () => {
+            isMouseOver = true;
+            hero.style.animation = 'camera3DMove 8s ease-in-out infinite';
+        });
+        
+        hero.addEventListener('mouseleave', () => {
+            isMouseOver = false;
+            hero.style.animation = 'none';
+        });
+    }
+}
+
+// Inicialización de todas las funcionalidades oceánicas 3D espectaculares
 document.addEventListener('DOMContentLoaded', function() {
     // Crear partículas oceánicas
     createOceanParticles();
@@ -1136,6 +1334,12 @@ document.addEventListener('DOMContentLoaded', function() {
     initOceanEffects();
     initOceanDepth();
     initUnderwaterLighting();
+    
+    // Inicializar efectos 3D espectaculares
+    init3DEffects();
+    init3DParallax();
+    init3DRealisticLighting();
+    init3DDynamicCamera();
     
     // Inicializar efectos espectaculares
     initSectionTransitions();
@@ -1153,14 +1357,16 @@ document.addEventListener('DOMContentLoaded', function() {
     initHoverEffects();
     initTypingEffect();
     
-    // Mostrar loading spinner oceánico
+    // Mostrar loading spinner oceánico 3D
     const loadingSpinner = document.getElementById('loadingSpinner');
     if (loadingSpinner) {
         loadingSpinner.style.display = 'flex';
         loadingSpinner.style.background = 'linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #0ea5e9 100%)';
+        loadingSpinner.style.transform = 'perspective(1000px) rotateX(15deg)';
         
         setTimeout(() => {
             loadingSpinner.style.opacity = '0';
+            loadingSpinner.style.transform = 'perspective(1000px) rotateX(0deg)';
             setTimeout(() => {
                 loadingSpinner.style.display = 'none';
             }, 500);
@@ -1215,4 +1421,56 @@ const styleSheet = document.createElement('style');
 styleSheet.textContent = additionalStyles;
 document.head.appendChild(styleSheet);
 
-console.log('🌊 OceanWave - Experiencia oceánica ESPECTACULAR cargada correctamente!');
+// Agregar animaciones CSS 3D adicionales
+const additional3DStyles = `
+@keyframes volumetric3DParticles {
+    0% {
+        transform: translateZ(0) scale(0) rotateX(0deg) rotateY(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+        transform: translateZ(50px) scale(1) rotateX(45deg) rotateY(45deg);
+    }
+    50% {
+        transform: translateZ(200px) scale(1.5) rotateX(90deg) rotateY(180deg);
+    }
+    90% {
+        opacity: 1;
+        transform: translateZ(400px) scale(1) rotateX(135deg) rotateY(270deg);
+    }
+    100% {
+        transform: translateZ(500px) scale(0) rotateX(180deg) rotateY(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes tentacleWave {
+    0%, 100% {
+        transform: translateX(-50%) rotate(0deg);
+    }
+    50% {
+        transform: translateX(-50%) rotate(10deg);
+    }
+}
+
+/* Efectos 3D adicionales */
+.cube-3d:hover {
+    animation: oceanElement3DRotate 2s ease-in-out infinite;
+}
+
+.sphere-3d:hover {
+    animation: sphere3DRotate 3s linear infinite, sphere3DPulse 1s ease-in-out infinite;
+}
+
+.particle-3d:hover {
+    animation: volumetric3DParticles 3s ease-in-out infinite;
+}
+`;
+
+// Inyectar estilos 3D adicionales
+const styleSheet3D = document.createElement('style');
+styleSheet3D.textContent = additional3DStyles;
+document.head.appendChild(styleSheet3D);
+
+console.log('🌊 OceanWave - Experiencia oceánica 3D ESPECTACULAR cargada correctamente!');
