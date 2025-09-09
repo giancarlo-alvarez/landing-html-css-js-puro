@@ -862,7 +862,272 @@ function initUnderwaterLighting() {
     });
 }
 
-// Inicialización de todas las funcionalidades oceánicas
+// Efectos de transición de sección espectaculares
+function initSectionTransitions() {
+    const sections = document.querySelectorAll('section');
+    
+    sections.forEach((section, index) => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Activar efectos específicos por sección
+                    activateSectionEffects(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        
+        observer.observe(section);
+    });
+}
+
+function activateSectionEffects(section) {
+    const sectionId = section.id;
+    
+    switch(sectionId) {
+        case 'servicios':
+            activateCoralReef();
+            activateTropicalFish();
+            break;
+        case 'sobre-nosotros':
+            activateFloatingIslands();
+            activateJellyfish();
+            break;
+        case 'contacto':
+            activateInteractiveCoral();
+            activateSeaTurtles();
+            break;
+    }
+}
+
+function activateCoralReef() {
+    const corals = document.querySelectorAll('.coral');
+    corals.forEach((coral, index) => {
+        setTimeout(() => {
+            coral.style.animation = 'coralSway 6s ease-in-out infinite, coralPulse 4s ease-in-out infinite';
+        }, index * 200);
+    });
+}
+
+function activateTropicalFish() {
+    const fish = document.querySelectorAll('.tropical-fish');
+    fish.forEach((fish, index) => {
+        setTimeout(() => {
+            fish.style.animation = 'tropicalFishSwim 15s linear infinite, bioluminescence 3s ease-in-out infinite';
+        }, index * 500);
+    });
+}
+
+function activateFloatingIslands() {
+    const islands = document.querySelectorAll('.island');
+    islands.forEach((island, index) => {
+        setTimeout(() => {
+            island.style.animation = 'islandFloat 8s ease-in-out infinite, islandGlow 4s ease-in-out infinite';
+        }, index * 300);
+    });
+}
+
+function activateJellyfish() {
+    const jellyfish = document.querySelectorAll('.jellyfish');
+    jellyfish.forEach((jelly, index) => {
+        setTimeout(() => {
+            jelly.style.animation = 'jellyfishFloat 6s ease-in-out infinite, jellyfishGlow 3s ease-in-out infinite';
+        }, index * 400);
+    });
+}
+
+function activateInteractiveCoral() {
+    const corals = document.querySelectorAll('.coral-interactive');
+    corals.forEach((coral, index) => {
+        coral.addEventListener('click', function() {
+            this.style.animation = 'coralPulse 0.5s ease-in-out';
+            setTimeout(() => {
+                this.style.animation = 'coralGlow 4s ease-in-out infinite';
+            }, 500);
+        });
+    });
+}
+
+function activateSeaTurtles() {
+    const turtles = document.querySelectorAll('.turtle');
+    turtles.forEach((turtle, index) => {
+        setTimeout(() => {
+            turtle.style.animation = 'turtleSwim 20s linear infinite, bioluminescence 5s ease-in-out infinite';
+        }, index * 1000);
+    });
+}
+
+// Efectos de tormenta marina
+function initStormEffects() {
+    const stormTransition = document.querySelector('.storm-transition');
+    if (stormTransition) {
+        // Efecto de tormenta aleatoria
+        setInterval(() => {
+            if (Math.random() < 0.3) {
+                triggerStorm();
+            }
+        }, 10000);
+    }
+}
+
+function triggerStorm() {
+    const stormTransition = document.querySelector('.storm-transition');
+    if (stormTransition) {
+        stormTransition.style.animation = 'stormEffect 2s ease-in-out';
+        
+        // Efectos de sonido visual
+        const lightning = document.querySelectorAll('.bolt');
+        lightning.forEach(bolt => {
+            bolt.style.animation = 'lightningFlash 0.1s ease-in-out infinite';
+        });
+        
+        setTimeout(() => {
+            stormTransition.style.animation = 'none';
+            lightning.forEach(bolt => {
+                bolt.style.animation = 'lightningFlash 0.5s ease-in-out infinite';
+            });
+        }, 2000);
+    }
+}
+
+// Efectos de bioluminiscencia marina
+function initBioluminescence() {
+    const elements = document.querySelectorAll('.jellyfish, .coral, .tropical-fish');
+    
+    elements.forEach(element => {
+        element.addEventListener('mouseenter', function() {
+            this.style.animation += ', bioluminescence 1s ease-in-out infinite';
+        });
+        
+        element.addEventListener('mouseleave', function() {
+            this.style.animation = this.style.animation.replace(', bioluminescence 1s ease-in-out infinite', '');
+        });
+    });
+}
+
+// Efectos de corrientes oceánicas
+function initOceanCurrents() {
+    const hero = document.querySelector('.hero');
+    if (hero) {
+        hero.style.backgroundSize = '400% 400%';
+        hero.style.animation = 'oceanCurrent 20s ease-in-out infinite';
+    }
+}
+
+// Efectos de arrecife interactivo
+function initInteractiveReef() {
+    const corals = document.querySelectorAll('.coral-interactive');
+    
+    corals.forEach(coral => {
+        coral.addEventListener('click', function() {
+            // Crear efecto de ondas
+            createCoralRipple(this);
+            
+            // Efecto de brillo
+            this.style.animation = 'coralPulse 0.5s ease-in-out';
+            
+            // Crear partículas de coral
+            createCoralParticles(this);
+        });
+    });
+}
+
+function createCoralRipple(coral) {
+    const ripple = document.createElement('div');
+    ripple.style.cssText = `
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        border: 2px solid rgba(255, 107, 107, 0.6);
+        border-radius: 50%;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        animation: rippleEffect 1s ease-out;
+        pointer-events: none;
+    `;
+    coral.appendChild(ripple);
+    
+    setTimeout(() => {
+        ripple.remove();
+    }, 1000);
+}
+
+function createCoralParticles(coral) {
+    for (let i = 0; i < 5; i++) {
+        const particle = document.createElement('div');
+        particle.style.cssText = `
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #ff6b6b;
+            border-radius: 50%;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            animation: coralParticleFloat 1s ease-out forwards;
+            pointer-events: none;
+        `;
+        coral.appendChild(particle);
+        
+        setTimeout(() => {
+            particle.remove();
+        }, 1000);
+    }
+}
+
+// Efectos de isla flotante
+function initFloatingIslands() {
+    const islands = document.querySelectorAll('.island');
+    
+    islands.forEach(island => {
+        island.addEventListener('mouseenter', function() {
+            this.style.animation = 'islandFloat 8s ease-in-out infinite, islandGlow 2s ease-in-out infinite';
+        });
+        
+        island.addEventListener('mouseleave', function() {
+            this.style.animation = 'islandFloat 8s ease-in-out infinite';
+        });
+    });
+}
+
+// Efectos de medusa bioluminiscente
+function initJellyfishEffects() {
+    const jellyfish = document.querySelectorAll('.jellyfish');
+    
+    jellyfish.forEach(jelly => {
+        jelly.addEventListener('click', function() {
+            // Efecto de pulso
+            this.style.animation = 'jellyfishFloat 6s ease-in-out infinite, jellyfishGlow 1s ease-in-out infinite';
+            
+            // Crear efecto de tentáculos
+            createTentacleEffect(this);
+        });
+    });
+}
+
+function createTentacleEffect(jellyfish) {
+    for (let i = 0; i < 3; i++) {
+        const tentacle = document.createElement('div');
+        tentacle.style.cssText = `
+            position: absolute;
+            width: 2px;
+            height: 30px;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, transparent 100%);
+            left: 50%;
+            top: 100%;
+            transform: translateX(-50%) rotate(${i * 120}deg);
+            animation: tentacleWave 2s ease-in-out infinite;
+            pointer-events: none;
+        `;
+        jellyfish.appendChild(tentacle);
+        
+        setTimeout(() => {
+            tentacle.remove();
+        }, 2000);
+    }
+}
+
+// Inicialización de todas las funcionalidades oceánicas espectaculares
 document.addEventListener('DOMContentLoaded', function() {
     // Crear partículas oceánicas
     createOceanParticles();
@@ -871,6 +1136,15 @@ document.addEventListener('DOMContentLoaded', function() {
     initOceanEffects();
     initOceanDepth();
     initUnderwaterLighting();
+    
+    // Inicializar efectos espectaculares
+    initSectionTransitions();
+    initStormEffects();
+    initBioluminescence();
+    initOceanCurrents();
+    initInteractiveReef();
+    initFloatingIslands();
+    initJellyfishEffects();
     
     // Inicializar efectos avanzados
     initCustomCursor();
@@ -913,4 +1187,32 @@ window.addEventListener('scroll', function() {
     });
 });
 
-console.log('🌊 OceanWave - Experiencia oceánica cargada correctamente!');
+// Agregar animaciones CSS adicionales
+const additionalStyles = `
+@keyframes coralParticleFloat {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) translateY(-50px) scale(1);
+        opacity: 0;
+    }
+}
+
+@keyframes tentacleWave {
+    0%, 100% {
+        transform: translateX(-50%) rotate(0deg);
+    }
+    50% {
+        transform: translateX(-50%) rotate(10deg);
+    }
+}
+`;
+
+// Inyectar estilos adicionales
+const styleSheet = document.createElement('style');
+styleSheet.textContent = additionalStyles;
+document.head.appendChild(styleSheet);
+
+console.log('🌊 OceanWave - Experiencia oceánica ESPECTACULAR cargada correctamente!');
