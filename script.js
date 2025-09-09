@@ -438,28 +438,107 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', toggleBackToTop);
 });
 
-// Sistema de partículas para el hero
-function createParticles() {
-    const particlesContainer = document.getElementById('particles');
-    if (!particlesContainer) return;
-
-    const particleCount = 50;
+// Sistema de partículas oceánicas espectaculares
+function createOceanParticles() {
+    const bubblesContainer = document.getElementById('bubbles');
+    const fishContainer = document.getElementById('fish');
+    const seaweedContainer = document.getElementById('seaweed');
     
-    for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.cssText = `
+    if (!bubblesContainer || !fishContainer || !seaweedContainer) return;
+
+    // Crear burbujas
+    createBubbles(bubblesContainer);
+    
+    // Crear peces
+    createFish(fishContainer);
+    
+    // Crear algas marinas
+    createSeaweed(seaweedContainer);
+}
+
+function createBubbles(container) {
+    const bubbleCount = 30;
+    
+    for (let i = 0; i < bubbleCount; i++) {
+        const bubble = document.createElement('div');
+        bubble.className = 'bubble';
+        const size = Math.random() * 15 + 5;
+        const delay = Math.random() * 10;
+        const duration = Math.random() * 8 + 6;
+        
+        bubble.style.cssText = `
             position: absolute;
-            width: ${Math.random() * 4 + 1}px;
-            height: ${Math.random() * 4 + 1}px;
-            background: rgba(255, 255, 255, ${Math.random() * 0.5 + 0.1});
+            width: ${size}px;
+            height: ${size}px;
+            background: radial-gradient(circle at 30% 30%, 
+                rgba(255, 255, 255, 0.8) 0%, 
+                rgba(14, 165, 233, 0.3) 50%, 
+                rgba(6, 182, 212, 0.1) 100%);
             border-radius: 50%;
             left: ${Math.random() * 100}%;
-            top: ${Math.random() * 100}%;
-            animation: float ${Math.random() * 10 + 10}s linear infinite;
-            animation-delay: ${Math.random() * 10}s;
+            bottom: -20px;
+            animation: bubbleFloat ${duration}s linear infinite;
+            animation-delay: ${delay}s;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
         `;
-        particlesContainer.appendChild(particle);
+        container.appendChild(bubble);
+    }
+}
+
+function createFish(container) {
+    const fishCount = 8;
+    const fishTypes = ['🐠', '🐟', '🐡', '🦈', '🐙', '🦑', '🦀', '🐚'];
+    
+    for (let i = 0; i < fishCount; i++) {
+        const fish = document.createElement('div');
+        fish.className = 'fish';
+        const size = Math.random() * 30 + 20;
+        const delay = Math.random() * 15;
+        const duration = Math.random() * 20 + 15;
+        const depth = Math.random() * 60 + 20;
+        
+        fish.style.cssText = `
+            position: absolute;
+            width: ${size}px;
+            height: ${size}px;
+            font-size: ${size}px;
+            top: ${depth}%;
+            left: -50px;
+            animation: fishSwim ${duration}s linear infinite;
+            animation-delay: ${delay}s;
+            filter: drop-shadow(0 0 5px rgba(14, 165, 233, 0.5));
+        `;
+        fish.textContent = fishTypes[Math.floor(Math.random() * fishTypes.length)];
+        container.appendChild(fish);
+    }
+}
+
+function createSeaweed(container) {
+    const seaweedCount = 6;
+    
+    for (let i = 0; i < seaweedCount; i++) {
+        const seaweed = document.createElement('div');
+        seaweed.className = 'seaweed';
+        const height = Math.random() * 100 + 50;
+        const left = Math.random() * 100;
+        const delay = Math.random() * 5;
+        
+        seaweed.style.cssText = `
+            position: absolute;
+            width: 8px;
+            height: ${height}px;
+            background: linear-gradient(180deg, 
+                rgba(34, 197, 94, 0.8) 0%, 
+                rgba(16, 185, 129, 0.6) 50%, 
+                rgba(5, 150, 105, 0.4) 100%);
+            left: ${left}%;
+            bottom: 0;
+            border-radius: 4px 4px 0 0;
+            animation: seaweedSway 4s ease-in-out infinite;
+            animation-delay: ${delay}s;
+            box-shadow: 0 0 10px rgba(34, 197, 94, 0.3);
+        `;
+        container.appendChild(seaweed);
     }
 }
 
@@ -659,11 +738,139 @@ function typeWriter(element, text, speed, delay = 0) {
     }, delay * 1000);
 }
 
-// Inicialización de todas las funcionalidades
+// Efectos oceánicos avanzados
+function initOceanEffects() {
+    // Efecto de ondas en el cursor
+    document.addEventListener('mousemove', createRipple);
+    
+    // Efecto de gotas de agua
+    setInterval(createWaterDrop, 2000);
+    
+    // Efecto de brillo coral
+    initCoralGlow();
+    
+    // Efecto de marea
+    initTideEffect();
+}
+
+function createRipple(e) {
+    const ripple = document.createElement('div');
+    ripple.className = 'ripple';
+    ripple.style.cssText = `
+        position: fixed;
+        width: 20px;
+        height: 20px;
+        background: radial-gradient(circle, rgba(14, 165, 233, 0.6) 0%, transparent 70%);
+        border-radius: 50%;
+        left: ${e.clientX - 10}px;
+        top: ${e.clientY - 10}px;
+        pointer-events: none;
+        z-index: 1000;
+        animation: rippleEffect 0.6s ease-out;
+    `;
+    document.body.appendChild(ripple);
+    
+    setTimeout(() => {
+        ripple.remove();
+    }, 600);
+}
+
+function createWaterDrop() {
+    const drop = document.createElement('div');
+    drop.className = 'water-drop';
+    drop.style.cssText = `
+        position: fixed;
+        width: 4px;
+        height: 20px;
+        background: linear-gradient(180deg, 
+            rgba(14, 165, 233, 0.8) 0%, 
+            rgba(6, 182, 212, 0.4) 100%);
+        left: ${Math.random() * 100}vw;
+        top: -20px;
+        pointer-events: none;
+        z-index: 100;
+        animation: waterDrop 3s linear;
+        border-radius: 2px;
+    `;
+    document.body.appendChild(drop);
+    
+    setTimeout(() => {
+        drop.remove();
+    }, 3000);
+}
+
+function initCoralGlow() {
+    const elements = document.querySelectorAll('.service-card, .btn, .nav-link');
+    elements.forEach(el => {
+        el.addEventListener('mouseenter', function() {
+            this.style.animation = 'coralGlow 2s ease-in-out infinite';
+        });
+        
+        el.addEventListener('mouseleave', function() {
+            this.style.animation = 'none';
+        });
+    });
+}
+
+function initTideEffect() {
+    const tide = document.createElement('div');
+    tide.className = 'tide-effect';
+    tide.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, 
+            transparent 0%, 
+            rgba(14, 165, 233, 0.1) 25%, 
+            transparent 50%, 
+            rgba(6, 182, 212, 0.1) 75%, 
+            transparent 100%);
+        pointer-events: none;
+        z-index: 1;
+        animation: tideFlow 8s ease-in-out infinite;
+    `;
+    document.body.appendChild(tide);
+}
+
+// Efectos de profundidad oceánica
+function initOceanDepth() {
+    const hero = document.querySelector('.hero');
+    if (hero) {
+        hero.style.background = `
+            linear-gradient(135deg, 
+                #0f172a 0%, 
+                #1e3a8a 20%, 
+                #0ea5e9 40%, 
+                #06b6d4 60%, 
+                #0891b2 80%, 
+                #0c4a6e 100%),
+            radial-gradient(circle at 50% 50%, 
+                rgba(14, 165, 233, 0.3) 0%, 
+                transparent 50%)
+        `;
+        hero.style.animation = 'oceanDepth 10s ease-in-out infinite';
+    }
+}
+
+// Efectos de luz submarina
+function initUnderwaterLighting() {
+    const elements = document.querySelectorAll('.hero-content, .service-card, .about-content');
+    elements.forEach(el => {
+        el.style.animation = 'underwaterLight 6s ease-in-out infinite';
+    });
+}
+
+// Inicialización de todas las funcionalidades oceánicas
 document.addEventListener('DOMContentLoaded', function() {
-    // Crear partículas
-    createParticles();
-    animateParticles();
+    // Crear partículas oceánicas
+    createOceanParticles();
+    
+    // Inicializar efectos oceánicos
+    initOceanEffects();
+    initOceanDepth();
+    initUnderwaterLighting();
     
     // Inicializar efectos avanzados
     initCustomCursor();
@@ -672,17 +879,18 @@ document.addEventListener('DOMContentLoaded', function() {
     initHoverEffects();
     initTypingEffect();
     
-    // Mostrar loading spinner al cargar
+    // Mostrar loading spinner oceánico
     const loadingSpinner = document.getElementById('loadingSpinner');
     if (loadingSpinner) {
         loadingSpinner.style.display = 'flex';
+        loadingSpinner.style.background = 'linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #0ea5e9 100%)';
         
         setTimeout(() => {
             loadingSpinner.style.opacity = '0';
             setTimeout(() => {
                 loadingSpinner.style.display = 'none';
             }, 500);
-        }, 1500);
+        }, 2000);
     }
 });
 
@@ -705,4 +913,4 @@ window.addEventListener('scroll', function() {
     });
 });
 
-console.log('🚀 Landing page modernizada cargada correctamente!');
+console.log('🌊 OceanWave - Experiencia oceánica cargada correctamente!');

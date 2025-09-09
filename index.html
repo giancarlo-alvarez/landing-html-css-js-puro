@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landing Page Moderna</title>
+    <title>OceanWave - Experiencia Oceánica</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Header -->
@@ -15,9 +16,9 @@
                 <div class="nav-logo">
                     <div class="logo-container">
                         <div class="logo-icon">
-                            <i class="fas fa-rocket"></i>
+                            <i class="fas fa-water"></i>
                         </div>
-                        <h2 class="logo-text">MiEmpresa</h2>
+                        <h2 class="logo-text">OceanWave</h2>
                     </div>
                 </div>
                 <ul class="nav-menu" id="nav-menu">
@@ -65,22 +66,46 @@
         </nav>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero Section Oceánico -->
     <section id="inicio" class="hero">
-        <div class="particles-container" id="particles"></div>
+        <!-- Efectos oceánicos -->
+        <div class="ocean-background">
+            <div class="wave wave1"></div>
+            <div class="wave wave2"></div>
+            <div class="wave wave3"></div>
+            <div class="wave wave4"></div>
+        </div>
+        
+        <!-- Partículas oceánicas -->
+        <div class="ocean-particles" id="oceanParticles">
+            <div class="bubbles-container" id="bubbles"></div>
+            <div class="fish-container" id="fish"></div>
+            <div class="seaweed-container" id="seaweed"></div>
+        </div>
+        
+        <!-- Rayos de luz solar -->
+        <div class="sun-rays">
+            <div class="ray ray1"></div>
+            <div class="ray ray2"></div>
+            <div class="ray ray3"></div>
+            <div class="ray ray4"></div>
+            <div class="ray ray5"></div>
+        </div>
+        
         <div class="hero-container">
             <div class="hero-content">
                 <div class="hero-badge">
-                    <i class="fas fa-star"></i>
-                    <span>#1 en Desarrollo Web</span>
+                    <i class="fas fa-anchor"></i>
+                    <span>#1 en Experiencias Oceánicas</span>
                 </div>
                 <h1 class="hero-title">
-                    <span class="title-line">Transformamos Ideas en</span>
-                    <span class="title-line highlight">Realidad Digital</span>
+                    <span class="title-line">Sumérgete en las</span>
+                    <span class="title-line highlight">Profundidades Digitales</span>
                 </h1>
                 <p class="hero-description">
-                    Somos especialistas en crear soluciones web innovadoras que impulsan tu negocio hacia el éxito. 
-                    Diseño, desarrollo y marketing digital de la más alta calidad.
+                    Navegamos por las aguas más profundas de la tecnología para crear experiencias web 
+                    que fluyen como las corrientes oceánicas. Diseño, desarrollo y marketing digital 
+                    con la fuerza del océano.
                 </p>
                 <div class="hero-stats">
                     <div class="stat-item">
@@ -98,12 +123,12 @@
                 </div>
                 <div class="hero-buttons">
                     <button class="btn btn-primary btn-animated" onclick="scrollToSection('servicios')">
-                        <span>Nuestros Servicios</span>
-                        <i class="fas fa-arrow-right"></i>
+                        <span>Explorar Servicios</span>
+                        <i class="fas fa-water"></i>
                     </button>
                     <button class="btn btn-secondary btn-animated" onclick="scrollToSection('contacto')">
-                        <span>Contactar Ahora</span>
-                        <i class="fas fa-phone"></i>
+                        <span>Navegar Juntos</span>
+                        <i class="fas fa-ship"></i>
                     </button>
                 </div>
             </div>
@@ -122,15 +147,18 @@
                         <i class="fas fa-chart-line"></i>
                     </div>
                     <div class="center-graphic">
-                        <i class="fas fa-rocket"></i>
+                        <i class="fas fa-water"></i>
                     </div>
                 </div>
             </div>
         </div>
+        
+        <!-- Indicador de scroll oceánico -->
         <div class="scroll-indicator">
             <div class="scroll-arrow">
                 <i class="fas fa-chevron-down"></i>
             </div>
+            <div class="scroll-text">Sumérgete más profundo</div>
         </div>
     </section>
 
